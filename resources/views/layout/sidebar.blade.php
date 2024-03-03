@@ -33,11 +33,11 @@
     @unlessrole('Nologin')
         <hr class="sidebar-divider my-0">
         <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-white">
-            {{-- <a class="nav-link d-flex align-items-center text-white"
+            <a class="nav-link d-flex align-items-center text-white"
                 href="{{ route('profiles.show', ['user' => auth()->user()]) }}">
                 <span data-feather="user"></span>
                 <span> Gérer mon profil </span>
-            </a> --}}
+            </a>
         </h6>
     @else
         <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-white">
