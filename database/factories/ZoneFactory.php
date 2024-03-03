@@ -1,23 +1,15 @@
 <?php
 
-namespace Database\Factories;
+/* @var $factory \Illuminate\Database\Eloquent\Factory */
 
-use Illuminate\Database\Eloquent\Factories\Factory;
+use Faker\Generator as Faker;
 
-/**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Model>
- */
-class ZoneFactory extends Factory
-{
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
-    public function definition(): array
-    {
-        return [
-            //
-        ];
-    }
-}
+$factory->define(App\Zone::class, function (Faker $faker) {
+    return [
+        'uuid' => $faker->uuid,
+        'nom' => $faker->word,
+        'localites_id' => function () {
+            return factory(App\Localite::class)->create()->id;
+        },
+    ];
+});
