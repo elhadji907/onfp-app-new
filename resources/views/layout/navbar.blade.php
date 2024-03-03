@@ -154,10 +154,10 @@
         <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
             
           @hasrole('super-admin|Administrateur|Gestionnaire|Ageroute')
-          <a class="dropdown-item" href="{{ route('profiles.show', ['user'=>auth()->user()]) }}">
+          {{-- <a class="dropdown-item" href="{{ route('profiles.show', ['user'=>auth()->user()]) }}">
             <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
             <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ Auth::user()->firstname }} {{ Auth::user()->name }}</span>
-          </a>
+          </a> --}}
           @else
           <a class="dropdown-item" href="{{ url('/home') }}">
           <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
@@ -179,10 +179,10 @@
           </a> 
           @else
           @endhasrole 
-          <a class="dropdown-item" href="{{ route('profiles.show', ['user'=>auth()->user()]) }}">
+          {{-- <a class="dropdown-item" href="{{ route('profiles.show', ['user'=>auth()->user()]) }}">
             <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
            {{(" Profil")}}
-          </a>
+          </a> --}}
           @hasrole('super-admin|Administrateur')
           <a class="dropdown-item" href="#">
             <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
