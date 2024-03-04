@@ -8,10 +8,10 @@ use App\Models\Interne;
 use App\Models\Depart;
 use App\Models\Direction;
 use App\Models\Imputation;
-use Auth;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Yajra\Datatables\Datatables;
-use DB;
+use Illuminate\Support\Facades\DB;
 use App\Models\Employee;
 use App\Models\User;
 use Dompdf\Dompdf;
@@ -116,7 +116,7 @@ class RecueController extends Controller
             $numCourrier   =   strtolower($numCourrier);
         }
 
-        return view('recues.create', compact('date', 'types', 'directions', 'imputations', 'date_r', 'numCourrier', 'annee'));
+        return response(view('recues.create', compact('date', 'types', 'directions', 'imputations', 'date_r', 'numCourrier', 'annee')));
     }
 
     /**
@@ -155,9 +155,9 @@ class RecueController extends Controller
         //$courrier_id = Courrier::get()->last()->id;
         $courrier_id = $users_id;
 
-        $direction = \App\Models\Direction::first();
-        $imputation = \App\Models\Imputation::first();
-        $courrier = \App\Models\Courrier::first();
+        $direction = Direction::first();
+        $imputation = Imputation::first();
+        $courrier = Courrier::first();
 
         // $filePath = request('file')->store('recues', 'public');
         $courrier = new Courrier([
@@ -191,7 +191,7 @@ class RecueController extends Controller
 
         /* $direction->courriers()->attach($courrier); */
 
-        return redirect()->route('recues.index')->with('success', 'courrier ajouté avec succès !');
+        return response(redirect()->route('recues.index')->with('success', 'courrier ajouté avec succès !'));
     }
 
     /**
@@ -227,7 +227,7 @@ class RecueController extends Controller
         //dd($recue);
 
         //dd($directions);
-        return view('recues.update', compact('recue', 'directions', 'imputations'));
+        return response(view('recues.update', compact('recue', 'directions', 'imputations')));
         /*  dd($recue); */
     }
 
@@ -253,7 +253,7 @@ class RecueController extends Controller
                 $courrier->description =  $request->input('description');
                 $courrier->date_imp    =  $request->input('date_imp');
                 $courrier->save();
-                return redirect()->route('recues.index', $recue->courrier->id)->with('success', 'Courrier imputé !');
+                return response(redirect()->route('recues.index', $recue->courrier->id)->with('success', 'Courrier imputé !'));
             
             //solution, récuper l'id à partir de blade avec le mode hidden
         }
@@ -368,7 +368,7 @@ class RecueController extends Controller
             $courrier->directions()->sync($request->input('directions'));
         }
 
-        return redirect()->route('recues.index', $recue->courrier->id)->with('success', 'courrier modifié avec succès !');
+        return response(redirect()->route('recues.index', $recue->courrier->id)->with('success', 'courrier modifié avec succès !'));
     }
 
     /**
@@ -387,7 +387,7 @@ class RecueController extends Controller
         $recue->delete();
 
         $message = "Le courrier enregistré sous le numéro ".$recue->numero.' a été supprimé';
-        return redirect()->route('recues.index')->with(compact('message'));
+        return response(redirect()->route('recues.index')->with(compact('message')));
     }
 
     public function list(Request $request)

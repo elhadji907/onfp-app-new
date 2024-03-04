@@ -88,7 +88,7 @@
         </div>
         <div class="container-fluid">
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-12">
                     <div class="card">
                         <div class="card-header">
                             <i class="fas fa-table"></i>
@@ -96,29 +96,20 @@
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                                {{--  <div align="right">
-                                    <a href="{{ route('courriers.create') }}">
-                                        <div class="btn btn-success btn-sm"><i class="fas fa-plus"></i>&nbsp;Ajouter</i>
-                                        </div>
-                                    </a>
-                                </div>  --}}
                                 <table class="table table-bordered table-striped" width="100%" cellspacing="0"
                                     id="table-courriers">
                                     <thead class="table-dark">
                                         <tr>
-                                            {{--  <th style="width:5%;">N°</th>  --}}
                                             <th style="width:5%;">N°</th>
                                             <th style="width:5%;">ANNEE</th>
                                             <th>OBJET</th>
                                             <th style="width:22%;">TYPE</th>
-                                            {{-- <th style="width:5%;"></th> --}}
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php $i = 1; ?>
                                         @foreach ($courriers as $courrier)
                                             <tr>
-                                                {{--  <td>{!! $i++ !!}</td>  --}}
                                                 <td>
                                                     <a style="color: darkorange; text-decoration: none;"
                                                         href="{!! url('courriers/' . $courrier->id) !!}" class="view" title="voir"
@@ -131,13 +122,6 @@
                                                 <td>
                                                     <b>{!! $courrier->types_courrier->name ?? '' !!}</b>
                                                 </td>
-                                                {{-- <td class="d-flex align-items-baseline align-content-center">    
-                            @can('courrier-edit')
-                            <a href="{!! url('courriers/'.$courrier->id) !!}" class= 'btn btn-primary btn-sm' title="voir">
-                              <i class="far fa-eye"></i>
-                            </a>
-                            @endcan 
-                        </td> --}}
                                             </tr>
                                         @endforeach
                                     </tbody>
@@ -145,20 +129,6 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-6">
-                    <!-- Pie Chart -->
-                    <div class="card card-chart">
-                        <div class="card-header">
-                            <h4 class="card-title text-center">Ressources</h4>
-                        </div>
-                        <div class="card-body">
-                            <div style="">
-                                {!! $pieChart->render() !!}
-                            </div>
-                        </div>
-                    </div>
-                    <!-- /Pie Chart -->
                 </div>
             </div>
         </div>
