@@ -107,8 +107,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/users/list', [UserController::class, 'list'])->name('users.list');
 
 
-
-
     Route::get('/profiles/{user}', [ProfileController::class, 'show'])->name('profiles.show');
     Route::get('/profiles/{user}/edit', [ProfileController::class, 'edit'])->name('profiles.edit');
     Route::patch('/profiles/{user}', [ProfileController::class, 'update'])->name('profiles.update');
@@ -132,7 +130,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/formations/list', [FormationController::class, 'list'])->name('formations.list');
     Route::get('/users/list', [UserController::class, 'list'])->name('users.list');
     Route::get('/employees/list', [EmployeeController::class, 'list'])->name('employees.list');
-    Route::get('/gestionnaires/list', [GestionnaireController::class ,'list'])->name('gestionnaires.list');
+    Route::get('/gestionnaires/list', [GestionnaireController::class, 'list'])->name('gestionnaires.list');
     Route::get('/directions/list', [DirectionController::class, 'list'])->name('directions.list');
     Route::get('/demandeurs/list', [DemandeurController::class, 'list'])->name('demandeurs.list');
     Route::get('/individuelles/list', [IndividuelleController::class, 'list'])->name('individuelles.list');
@@ -256,7 +254,7 @@ Route::middleware('auth')->group(function () {
     Route::get('listecandidatacceptes/{projet}/{localite}/{module}', [AgerouteformationController::class, 'listecandidatacceptes'])->name('listecandidatacceptes');
     Route::get('listecandidatretenus/{projet}/{zone}/{module}', [AgerouteformationController::class, 'listecandidatretenus'])->name('listecandidatretenus');
     Route::get('pvevaluation/{module}/{projet}/{programme}/{findividuelle}', [FindividuelleController::class, 'pvevaluation'])->name('pvevaluation');
-    
+
     Route::get('ajouternote/{individuelle}/{findividuelle}', [AgerouteformationController::class, 'ajouternote'])->name('ajouternote');
     Route::get('feuille/{id}', [ListeController::class, 'feuille'])->name('feuille');
 
@@ -267,7 +265,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/specialites/list', [SpecialiteController::class, 'list'])->name('specialites.list');
     Route::post('/comments/{courrier}', [CommentController::class, 'store'])->name('comments.store');
     Route::post('/commentReply/{comment}', [CommentController::class, 'storeCommentReply'])->name('comments.storeReply');
-    
+
     Route::get('/pcharges.selectetablissements', function () {
         return view('pcharges.selectetablissements');
     })->name('pcharges.selectetablissements');
@@ -286,7 +284,7 @@ Route::middleware('auth')->group(function () {
     Route::get('courrierimputations/{type}/{id}', [CourrierController::class, 'courrierimputations'])->name('courrierimputations');
     Route::post('/courrier/fetch', [CourrierController::class, 'fetch'])->name('courrier.fetch');
 
-    
+
     Route::get('moduleoperateurs/{id}', [OperateurController::class, 'moduleoperateurs'])->name('moduleoperateurs');
     Route::post('/moduleoperateur/fetche', [OperateurController::class, 'fetche'])->name('moduleoperateur.fetche');
     Route::get('suivieval/{module}/{projet}/{programme}/{findividuelle}', [FindividuelleController::class, 'suivieval'])->name('suivieval');
@@ -300,77 +298,76 @@ Route::middleware('auth')->group(function () {
 
 
 
-    
-    Route::resource('/courriers', CourrierController::class);
-    Route::resource('/recues', RecueController::class);
-    Route::resource('/departs', DepartController::class);
-    Route::resource('/internes', InterneController::class);
-    Route::resource('/administrateurs', AdministrateurController::class);
-    Route::resource('/formations', FormationController::class);
-    Route::resource('/users', UserController::class);
-    Route::resource('/employees', EmployeeController::class);
-    Route::resource('/gestionnaires', GestionnaireController::class);
-    Route::resource('/directions', DirectionController::class);
-    Route::resource('/services', ServiceController::class);
-    Route::resource('/demandeurs', DemandeurController::class);
-    Route::resource('/individuelles', IndividuelleController::class);
-    Route::resource('/findividuelles', FindividuelleController::class);
-    Route::resource('/collectives', CollectiveController::class);
-    Route::resource('/pcharges', PchargeController::class);
-    Route::resource('/fcollectives', FcollectiveController::class);
-    Route::resource('/domaines', DomaineController::class);
-    Route::resource('/diplomes', DiplomeController::class);
-    Route::resource('/modules', ModuleController::class);
-    Route::resource('/secteurs', SecteurController::class);
-    Route::resource('/activites', ActiviteController::class);
-    Route::resource('/projets', ProjetController::class);
-    Route::resource('/depenses', DepenseController::class);
-    Route::resource('/niveauxs', NiveauxController::class);
-    Route::resource('/options', OptionController::class);
-    Route::resource('/operateurs', OperateurController::class);
-    Route::resource('/programmes', ProgrammeController::class);
-    Route::resource('/nineas', NineaController::class);
-    Route::resource('/ingenieurs', IngenieurController::class);
-    Route::resource('/factures', FactureController::class);
-    Route::resource('/facturesdafs', FacturedafController::class);
-    Route::resource('/etats', EtatController::class);
-    Route::resource('/etatsprivis', EtatspreviController::class);
-    Route::resource('/banques', BanqueController::class);
-    Route::resource('/missions', MissionController::class);
-    Route::resource('/bordereaus', BordereauController::class);
-    Route::resource('/listes', ListeController::class);
-    Route::resource('/tresors', TresorController::class);
-    Route::resource('/departements', DepartementController::class);
-    Route::resource('/regions', RegionController::class);
-    Route::resource('/arrondissements', ArrondissementController::class);
-    Route::resource('/communes', CommuneController::class);
-    Route::resource('/roles', RoleController::class);
-    Route::resource('/categories', CategoryController::class);
-    Route::resource('/typedirections', TypedirectionController::class);
-    Route::resource('/fonctions', FonctionController::class);
-    Route::resource('/permissions', PermissionController::class);
-    Route::resource('/etablissements', EtablissementController::class);
-    Route::resource('/filieres', FiliereController::class);
-    Route::resource('/filierespecialites', FilierespecialiteController::class);
-    Route::resource('/specialites', SpecialiteController::class);
-    Route::resource('/scolarites', ScolariteController::class);
-    Route::resource('/antennes', AntenneController::class);
-    Route::resource('/ageroutes', AgerouteController::class);
-    Route::resource('/ageroutelocalites', AgeroutelocaliteController::class);
-    Route::resource('/ageroutezones', AgeroutezoneController::class);
-    Route::resource('/ageroutemodules', AgeroutemoduleController::class);
-    Route::resource('/agerouteindividuelles', AgerouteindividuelleController::class);
-    Route::resource('/agerouteindividuellesmotif', IndividuellemotifController::class);
-    Route::resource('/agerouteindividuellesrang', IndividuellerangController::class);
-    Route::resource('/agerouteformations', AgerouteformationController::class);
-    Route::resource('/individuellenotes', IndividuellenoteController::class);
-    Route::resource('/individuelleretenus', AgerouteretenuController::class);
-    Route::resource('/individuelleattentes', AgeroutelisteattenteController::class);
-
+    Route::resources([
+        'courriers'                     =>      CourrierController::class,
+        'recues'                        =>      RecueController::class,
+        'departs'                       =>      DepartController::class,
+        'internes'                      =>      InterneController::class,
+        'administrateurs'               =>      AdministrateurController::class,
+        'formations'                    =>      FormationController::class,
+        'users'                         =>      UserController::class,
+        'employees'                     =>      EmployeeController::class,
+        'gestionnaires'                 =>      GestionnaireController::class,
+        'directions'                    =>      DirectionController::class,
+        'services'                      =>      ServiceController::class,
+        'demandeurs'                    =>      DemandeurController::class,
+        'individuelles'                 =>      IndividuelleController::class,
+        'findividuelles'                =>      FindividuelleController::class,
+        'collectives'                   =>      CollectiveController::class,
+        'pcharges'                      =>      PchargeController::class,
+        'fcollectives'                  =>      FcollectiveController::class,
+        'domaines'                      =>      DomaineController::class,
+        'diplomes'                      =>      DiplomeController::class,
+        'modules'                       =>      ModuleController::class,
+        'secteurs'                      =>      SecteurController::class,
+        'activites'                     =>      ActiviteController::class,
+        'projets'                       =>      ProjetController::class,
+        'depenses'                      =>      DepenseController::class,
+        'niveauxs'                      =>      NiveauxController::class,
+        'options'                       =>      OptionController::class,
+        'operateurs'                    =>      OperateurController::class,
+        'programmes'                    =>      ProgrammeController::class,
+        'nineas'                        =>      NineaController::class,
+        'ingenieurs'                    =>      IngenieurController::class,
+        'factures'                      =>      FactureController::class,
+        'facturesdafs'                  =>      FacturedafController::class,
+        'etats'                         =>      EtatController::class,
+        'etatsprivis'                   =>      EtatspreviController::class,
+        'banques'                       =>      BanqueController::class,
+        'missions'                      =>      MissionController::class,
+        'bordereaus'                    =>      BordereauController::class,
+        'listes'                        =>      ListeController::class,
+        'tresors'                       =>      TresorController::class,
+        'departements'                  =>      DepartementController::class,
+        'regions'                       =>      RegionController::class,
+        'arrondissements'               =>      ArrondissementController::class,
+        'communes'                      =>      CommuneController::class,
+        'roles'                         =>      RoleController::class,
+        'categories'                    =>      CategoryController::class,
+        'typedirections'                =>      TypedirectionController::class,
+        'fonctions'                     =>      FonctionController::class,
+        'permissions'                   =>      PermissionController::class,
+        'etablissements'                =>      EtablissementController::class,
+        'filieres'                      =>      FiliereController::class,
+        'filierespecialites'            =>      FilierespecialiteController::class,
+        'specialites'                   =>      SpecialiteController::class,
+        'scolarites'                    =>      ScolariteController::class,
+        'antennes'                      =>      AntenneController::class,
+        'ageroutes'                     =>      AgerouteController::class,
+        'ageroutelocalites'             =>      AgeroutelocaliteController::class,
+        'ageroutezones'                 =>      AgeroutezoneController::class,
+        'ageroutemodules'               =>      AgeroutemoduleController::class,
+        'agerouteindividuelles'         =>      AgerouteindividuelleController::class,
+        'agerouteindividuellesmotif'    =>      IndividuellemotifController::class,
+        'agerouteindividuellesrang'     =>      IndividuellerangController::class,
+        'agerouteformations'            =>      AgerouteformationController::class,
+        'individuellenotes'             =>      IndividuellenoteController::class,
+        'individuelleretenus'           =>      AgerouteretenuController::class,
+        'individuelleattentes'          =>      AgeroutelisteattenteController::class,
+    ]);
 });
 
 
 
-Route::resource('/users', UserController::class);
 
 require __DIR__ . '/auth.php';
